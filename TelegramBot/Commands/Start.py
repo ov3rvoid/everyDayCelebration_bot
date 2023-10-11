@@ -3,7 +3,7 @@ from aiogram import types
 from aiogram.dispatcher.filters import Command
 from random import randint
 from datetime import datetime 
-
+from Parser import parsing
 
 newdate = datetime.now()  
 newdate = newdate.strftime("%d.%m.%Y")
