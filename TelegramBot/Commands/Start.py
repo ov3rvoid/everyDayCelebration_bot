@@ -4,7 +4,7 @@ from aiogram.dispatcher.filters import Command
 from random import randint
 from datetime import datetime
 
-from Parser import parsing
+from Parser import filteredCelebrates
 from Config import dp, bot
 from Keyboards import *
 
@@ -46,6 +46,12 @@ async def celebrate(message: types.Message):
         message.from_user.id,
         f"{smiles[random_index(len_smiles)]}инициализирую поиск праздника\n\n{smiles[random_index(len_smiles)]}ща дропну",
     )
+    for i in range(len(filteredCelebrates)):
+        await bot.send_message(
+            message.from_user.id,
+            filteredCelebrates[i]
+        )
+    
 
 
 @dp.message_handler(commands='shedule')

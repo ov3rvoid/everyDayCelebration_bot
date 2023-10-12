@@ -36,10 +36,10 @@ allCelebrates = []
 
 soup = BeautifulSoup(page.text, "html.parser")
 allCelebrates = soup.findAll('div', class_ = 'event_block')
-forbidden_symbols = string.ascii_letters + string.digits + '()'
-
+forbidden_symbols = string.ascii_letters + '()'
+# print(allCelebrates)
 for celebrates in allCelebrates:
-    if celebrates.find('div', class_='event'):
+    if celebrates.find('span', class_='super'):
         celebrates_of_day = celebrates.text
         final_text = ''
         mb_its_abb = 0
@@ -53,8 +53,10 @@ for celebrates in allCelebrates:
                 mb_its_abb = 1
             if symb not in forbidden_symbols:
                 final_text += symb
-        final_text = final_text.replace('лет', '')
-        final_text = final_text.replace('года', '')
-        filteredCelebrates.append(final_text.strip())
+        # final_text = final_text.replace('лет', '')
+        # final_text = final_text.replace('года', '')
+        filteredCelebrates.extend(final_text.split('•'))
 
-print(filteredCelebrates[:10])
+for i in range(len(filteredCelebrates) - 1):
+    if filteredCelebrates[i] == '':
+        filteredCelebrates.pop(i)
