@@ -33,6 +33,7 @@ months = [
 month = months[int(date_list[1]) - 1]
 day = date_list[0]
 
+<<<<<<< HEAD
 url = r'https://kakoysegodnyaprazdnik.ru/baza/' + month + '/' + day
 
 options = Options()
@@ -48,9 +49,17 @@ time.sleep(4)
 # print(page)
 # print(page.text)
 # page.encoding = 'utf-8'
+=======
+url = f'https://kakoysegodnyaprazdnik.ru/'
+page = requests.get(url)
+print(page)
+page.encoding = 'utf-8'
+>>>>>>> 0a57ad34f60d66fe802a9269b798f80d4a6661b5
+
 
 filteredCelebrates = []
 allCelebrates = []
+<<<<<<< HEAD
 # print(date_list)
 # soup = BeautifulSoup(page.text, "html.parser")
 # allCelebrates = soup.findAll('div', class_ = 'main')
@@ -58,6 +67,13 @@ print(allCelebrates)
 
 forbidden_symbols = string.ascii_letters + string.digits + '()'
 
+=======
+
+soup = BeautifulSoup(page.text, "html.parser")
+allCelebrates = soup.findAll('div', class_ = 'event_block')
+forbidden_symbols = string.ascii_letters + '()'
+# print(allCelebrates)
+>>>>>>> 0a57ad34f60d66fe802a9269b798f80d4a6661b5
 for celebrates in allCelebrates:
     if celebrates.find('span', class_='other'):
         celebrates_of_day = celebrates.text
@@ -73,8 +89,10 @@ for celebrates in allCelebrates:
                 mb_its_abb = 1
             if symb not in forbidden_symbols:
                 final_text += symb
-        final_text = final_text.replace('лет', '')
-        final_text = final_text.replace('года', '')
-        filteredCelebrates.append(final_text.strip())
+        # final_text = final_text.replace('лет', '')
+        # final_text = final_text.replace('года', '')
+        filteredCelebrates.extend(final_text.split('•'))
 
-print(filteredCelebrates[:10])
+for i in range(len(filteredCelebrates) - 1):
+    if filteredCelebrates[i] == '':
+        filteredCelebrates.pop(i)
