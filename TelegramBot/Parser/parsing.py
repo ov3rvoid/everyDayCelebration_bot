@@ -25,21 +25,21 @@ months = [
 month = months[int(date_list[1]) - 1]
 day = date_list[0]
 
-url = 'https://kakoysegodnyaprazdnik.ru/baza/' + month + '/' + day
+url = f'https://kakoysegodnyaprazdnik.ru/'
 page = requests.get(url)
 print(page)
 page.encoding = 'utf-8'
 
+
 filteredCelebrates = []
 allCelebrates = []
-print(date_list)
-soup = BeautifulSoup(page.text, "html.parser")
-allCelebrates = soup.findAll('div', class_ = 'other')
 
+soup = BeautifulSoup(page.text, "html.parser")
+allCelebrates = soup.findAll('div', class_ = 'event_block')
 forbidden_symbols = string.ascii_letters + string.digits + '()'
 
 for celebrates in allCelebrates:
-    if celebrates.find('span', class_='super'):
+    if celebrates.find('div', class_='event'):
         celebrates_of_day = celebrates.text
         final_text = ''
         mb_its_abb = 0
