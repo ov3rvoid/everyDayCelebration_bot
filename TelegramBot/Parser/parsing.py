@@ -1,7 +1,15 @@
-from bs4 import BeautifulSoup
-import requests
+# from bs4 import BeautifulSoup
+# import requests
 import string 
 from datetime import datetime
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+import pandas as pd
+import time
 
 newdate = datetime.now()
 newdate = newdate.strftime("%d.%m.%Y")
@@ -25,21 +33,33 @@ months = [
 month = months[int(date_list[1]) - 1]
 day = date_list[0]
 
-url = 'https://kakoysegodnyaprazdnik.ru/baza/' + month + '/' + day
-page = requests.get(url)
-print(page)
-page.encoding = 'utf-8'
+url = r'https://kakoysegodnyaprazdnik.ru/baza/' + month + '/' + day
+
+options = Options()
+options.add_argument("--disable-infobars") 
+browser = webdriver.Chrome(options=options)
+browser.get(url)
+
+elems  =  browser.find_elements(By.CLASS_NAME,  'listing_wr' )
+time.sleep(4)
+
+# page = requests.get(url)
+# print(url)
+# print(page)
+# print(page.text)
+# page.encoding = 'utf-8'
 
 filteredCelebrates = []
 allCelebrates = []
-print(date_list)
-soup = BeautifulSoup(page.text, "html.parser")
-allCelebrates = soup.findAll('div', class_ = 'other')
+# print(date_list)
+# soup = BeautifulSoup(page.text, "html.parser")
+# allCelebrates = soup.findAll('div', class_ = 'main')
+print(allCelebrates)
 
 forbidden_symbols = string.ascii_letters + string.digits + '()'
 
 for celebrates in allCelebrates:
-    if celebrates.find('span', class_='super'):
+    if celebrates.find('span', class_='other'):
         celebrates_of_day = celebrates.text
         final_text = ''
         mb_its_abb = 0
