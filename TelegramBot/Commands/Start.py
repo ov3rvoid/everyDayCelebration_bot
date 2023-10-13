@@ -42,7 +42,7 @@ async def start(message: types.Message):
 @dp.message_handler(commands='celebrate')
 async def celebrate(message: types.Message):
     await message.reply(
-        f"{smiles[random_index(len_smiles)]}инициализирую поиск праздника\n\n{smiles[random_index(len_smiles)]}ща дропну",
+        f"{smiles[random_index(len_smiles)]}Каждый день праздник)))\n\n{smiles[random_index(len_smiles)]}",
     )
     await message.reply(
         output_celebrates

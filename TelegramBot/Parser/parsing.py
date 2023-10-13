@@ -49,19 +49,11 @@ time.sleep(1)
 
 filteredCelebrates = list()
 
-forbidden_symbols = string.ascii_letters + string.digits + '!#%&()*/;<=>@[\]^_`{|}~'
+forbidden_symbols = string.ascii_letters + string.digits + '!#%&()*/;<=>@[]^_`{|}~'
 
 for celebrate in allCelebrates:
     final_text = ''
-    # mb_its_abb = 0
     for symb in celebrate:
-        # if mb_its_abb == 1 and symb.isupper():
-        #     final_text = final_text[:-1]
-        #     break
-        # else:
-        #     mb_its_abb = 0
-        # if symb.isupper():
-        #     mb_its_abb = 1
         if symb not in forbidden_symbols:
             final_text += symb
     for _ in range(4): final_text = final_text.replace('  ', ' ')
