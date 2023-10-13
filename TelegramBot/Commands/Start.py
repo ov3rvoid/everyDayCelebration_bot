@@ -4,7 +4,7 @@ from aiogram.dispatcher.filters import Command
 from random import randint
 from datetime import datetime
 
-from Parser import filteredCelebrates
+from Parser import output_celebrates, filteredCelebrates
 from Config import dp, bot
 from Keyboards import *
 
@@ -34,30 +34,25 @@ def random_index(len_smiles):
 
 @dp.message_handler(commands=['start'])
 async def start(message: types.Message):
-    await bot.send_message(
-        message.from_user.id,
+    await message.reply(
         "Меня создали два гения"
     )
 
 
 @dp.message_handler(commands='celebrate')
 async def celebrate(message: types.Message):
-    await bot.send_message(
-        message.from_user.id,
+    await message.reply(
         f"{smiles[random_index(len_smiles)]}инициализирую поиск праздника\n\n{smiles[random_index(len_smiles)]}ща дропну",
     )
-    for i in range(len(filteredCelebrates)):
-        await bot.send_message(
-            message.from_user.id,
-            filteredCelebrates[i]
-        )
+    await message.reply(
+        output_celebrates
+    )
     
 
 
 @dp.message_handler(commands='shedule')
 async def shedule(message: types.Message):
-    await bot.send_message(
-        message.from_user.id,
+    await message.reply(
         "Чё там по парам",
         reply_markup=days_kb
     )
@@ -151,6 +146,6 @@ async def thu2(callback_query: types.CallbackQuery):
 async def fri2(callback_query: types.CallbackQuery):
     await bot.answer_callback_query(callback_query.id)
     await callback_query.message.edit_text(
-        f'Пятница, нижняя неделя\n\n1 пара (09:00 — 10:35)\nПрограммирование и алгоритмизация (Практические)\nПолевой Д. В.\n\n2 пара (10:50 — 12:25)\nМатематика (Практические)\nПлужникова Е. Л.\nА-512\n\n3 пара (12:40 — 14:15)\nМатематика (Практические)\nПлужникова Е. Л.\nА-512\n\n4 пара (14:30 — 16:05)\nВычислительные машины, сети и системы (Лекционные)\nКрынецкая Г. С.\nБ-3\n\n{check_week(days_list, day_week, week)}',
+        f'Пятница, нижняя неделя\n\n1 пара (09:00 — 10:35)\nПрограммирование и алгоритмизация (Практические)\nПолевой Д. В.\nБ-829\n\n2 пара (10:50 — 12:25)\nМатематика (Практические)\nПлужникова Е. Л.\nА-512\n\n3 пара (12:40 — 14:15)\nМатематика (Практические)\nПлужникова Е. Л.\nА-512\n\n4 пара (14:30 — 16:05)\nВычислительные машины, сети и системы (Лекционные)\nКрынецкая Г. С.\nБ-3\n\n{check_week(days_list, day_week, week)}',
         reply_markup=days_kb
     )

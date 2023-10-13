@@ -1,4 +1,3 @@
-import string 
 from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -6,7 +5,12 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+
+import string 
 import time
+from random import randint
+
+smiles = ['🥳', '🥹', '😉', '💩', '🧐', '😎', '😶‍🌫️', '👻', '🤡', '🤯', '🎉', '🕊️', '🙀', '👽', '🤠', '🦋']
 
 newdate = datetime.now()
 newdate = newdate.strftime("%d.%m.%Y")
@@ -63,7 +67,9 @@ for celebrate in allCelebrates:
     for _ in range(4): final_text = final_text.replace('  ', ' ')
     filteredCelebrates.append(final_text.strip('• ' + string.punctuation))
 
+output_celebrates = ''
+
 for i in range(len(filteredCelebrates)):
-    if filteredCelebrates[i] == '':
-        filteredCelebrates.pop(i)
-    print(filteredCelebrates[i])
+    output_celebrates += str(i + 1) + '. ' + filteredCelebrates[i] + smiles[randint(1, len(smiles) - 1)] +'\n' + '\n'
+
+output_celebrates = output_celebrates[:-2]
