@@ -45,7 +45,7 @@ time.sleep(1)
 
 filteredCelebrates = list()
 
-forbidden_symbols = string.ascii_letters + string.digits + '()'
+forbidden_symbols = string.ascii_letters + string.digits + '!#%&()*/;<=>@[\]^_`{|}~'
 
 for celebrate in allCelebrates:
     final_text = ''
