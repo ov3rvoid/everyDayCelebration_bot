@@ -74,7 +74,7 @@ async def mon1(callback_query: types.CallbackQuery):
 async def tue1(callback_query: types.CallbackQuery):
     await bot.answer_callback_query(callback_query.id)
     await callback_query.message.edit_text(
-        f'Вторник, верхняя неделя\n\n2 пара (10:50 — 12:25)\Ангем (Лекционные)\nПлужникова Е. Л.\nБ-3\n\n4 пара (14:30 — 16:05)\nИностранный язык (Практические)\nКаф. ИЯКТ\n\n5 пара (16:20 — 17:55)\nАнгем (Практические)\nДанченков И. В.\nА-328\n\n{check_week(days_list, day_week, week)}',
+        f'Вторник, верхняя неделя\n\n2 пара (10:50 — 12:25)\nАнгем (Лекционные)\nПлужникова Е. Л.\nБ-3\n\n4 пара (14:30 — 16:05)\nИностранный язык (Практические)\nКаф. ИЯКТ\n\n5 пара (16:20 — 17:55)\nАнгем (Практические)\nДанченков И. В.\nА-328\n\n{check_week(days_list, day_week, week)}',
         reply_markup=days_kb
     )
 
