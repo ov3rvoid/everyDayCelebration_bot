@@ -85,13 +85,13 @@ def list_of_all_Celebrates(brsr):
     return allCelebrates
 
 
-if __name__ == "__main__":
-    month = months[int(date_list[1]) - 1]
-    day = date_list[0]
 
-    url = r'https://kakoysegodnyaprazdnik.ru/baza/' + month + '/' + day
-    browser = activate_browser_url(url)
-    allCelebrates = list_of_all_Celebrates(browser)
-    #   time.sleep(3)   #  if u meet the capcha or another test in browser
+month = months[int(date_list[1]) - 1]
+day = date_list[0]
 
-    output_celebrates = formatting_all_celebrates(allCelebrates)
+url = r'https://kakoysegodnyaprazdnik.ru/baza/' + month + '/' + day
+browser = activate_browser_url(url)
+allCelebrates = list_of_all_Celebrates(browser)
+#   time.sleep(3)   #  if u meet the capcha or another test in browser
+
+output_celebrates = formatting_all_celebrates(allCelebrates)

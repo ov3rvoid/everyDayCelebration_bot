@@ -4,7 +4,7 @@ from aiogram.dispatcher.filters import Command
 from random import randint
 from datetime import datetime
 
-from Parser import output_celebrates, filteredCelebrates
+from Parser import output_celebrates
 from Config import dp, bot
 from Keyboards import *
 

@@ -1,1 +1,1 @@
-from .parsing import output_celebrates, filteredCelebrates
+from .parsing import output_celebrates
