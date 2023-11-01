@@ -65,15 +65,14 @@ def formatting_all_celebrates(allCelebrates, final_formatting=1):
             output_celebrates += str(i + 1) + '. ' + filteredCelebrates[i] + smiles[randint(1, len(smiles) - 1)] +'\n' + '\n'
         output_celebrates = output_celebrates[:-2]
     else:
-        output_celebrates = filteredCelebrates
+        return filteredCelebrates
     return output_celebrates
             
 
-def activate_browser_url(url):
+def activate_browser_url():
     options = Options()
     options.add_argument("--disable-infobars") 
     browser = webdriver.Chrome(options=options)
-    browser.get(url)
     return browser
 
 
@@ -85,13 +84,14 @@ def list_of_all_Celebrates(brsr):
     return allCelebrates
 
 
+if __name__ == '__main__':
+    month = months[int(date_list[1]) - 1]
+    day = date_list[0]
 
-month = months[int(date_list[1]) - 1]
-day = date_list[0]
+    url = r'https://kakoysegodnyaprazdnik.ru/baza/' + month + '/' + day
+    browser = activate_browser_url()
+    browser.get(url)
+    allCelebrates = list_of_all_Celebrates(browser)
+    #   time.sleep(3)   #  if u meet the capcha or another test in browser
 
-url = r'https://kakoysegodnyaprazdnik.ru/baza/' + month + '/' + day
-browser = activate_browser_url(url)
-allCelebrates = list_of_all_Celebrates(browser)
-#   time.sleep(3)   #  if u meet the capcha or another test in browser
-
-output_celebrates = formatting_all_celebrates(allCelebrates)
+    output_celebrates = formatting_all_celebrates(allCelebrates)
