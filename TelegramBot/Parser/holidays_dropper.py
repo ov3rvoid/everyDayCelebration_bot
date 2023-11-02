@@ -1,14 +1,12 @@
 import pandas as pd
-import datetime
-import parsing 
+import parsing as prs
 
 path_to_data = 'TelegramBot/Data/AllHolidays.csv'
-date_list = parsing.date_list
+date_list = prs.date_list
 
-data = pd.read_csv(path_to_data)
-day_name = '{0:0>2}'.format(str(date_list[0]))
-month_name = '{0:0>2}'.format( str( parsing.months.index(date_list[1]) + 1 ) )
-date_name = f'{day_name}/{month_name}'
+
+data = pd.read_csv(path_to_data, sep=';')
+date_name = f'{date_list[0]}/{date_list[1]}'
 holidays = data[date_name]
-output_celebrates = parsing.formatting_all_celebrates(holidays)
-print(holidays)
+holidays = holidays[holidays.notnull()]
+output_celebrates = prs.formatting_all_celebrates(holidays)

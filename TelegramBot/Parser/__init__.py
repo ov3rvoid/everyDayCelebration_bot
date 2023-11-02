@@ -1,1 +1,1 @@
-from .parsing import output_celebrates
+from .holidays_dropper import output_celebrates
