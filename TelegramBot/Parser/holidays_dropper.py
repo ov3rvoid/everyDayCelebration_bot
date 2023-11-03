@@ -1,10 +1,12 @@
 import pandas as pd
-from .parsing import date_list, formatting_all_celebrates
-
+from .parsing import formatting_all_celebrates
+import datetime
 
 path_to_data = 'Data/AllHolidays.csv'
-date_list = date_list
 
+newdate = datetime.now()
+newdate = newdate.strftime("%d.%m.%Y")
+date_list = newdate.split('.')
 
 data = pd.read_csv(path_to_data, sep=';')
 date_name = f'{date_list[0]}/{date_list[1]}'
