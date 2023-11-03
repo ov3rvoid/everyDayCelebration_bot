@@ -27,6 +27,10 @@ smiles = ['🥳', '🥹', '😉', '💩', '🧐', '😎', '😶‍🌫️', '�
 len_smiles = len(smiles) - 1
 
 
+def random_celebrity():
+    index = randint(0, len(output_celebrates))
+    return index
+
 def random_index(len_smiles):
     index = randint(0, len_smiles)
     return index
@@ -42,10 +46,10 @@ async def start(message: types.Message):
 @dp.message_handler(commands='celebrate')
 async def celebrate(message: types.Message):
     await message.reply(
-        f"{smiles[random_index(len_smiles)]}Каждый день праздник)))\n\n{smiles[random_index(len_smiles)]}",
+        f"{smiles[random_index(len_smiles)]}Каждый день праздник)))",
     )
     await message.reply(
-        output_celebrates
+        output_celebrates[random_celebrity()]
     )
     
 

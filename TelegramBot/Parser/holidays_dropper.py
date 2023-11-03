@@ -1,6 +1,6 @@
 import pandas as pd
 from .parsing import formatting_all_celebrates
-import datetime
+from datetime import datetime
 
 path_to_data = 'Data/AllHolidays.csv'
 

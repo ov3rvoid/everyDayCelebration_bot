@@ -59,10 +59,10 @@ def formatting_all_celebrates(allCelebrates, final_formatting=1):
                     final_text += symb
         for _ in range(4): final_text = final_text.replace('  ', ' ')
         filteredCelebrates.append(final_text.strip(string.punctuation))
-    output_celebrates = ''
+    output_celebrates = []
     if final_formatting:
         for i in range(len(filteredCelebrates)):
-            output_celebrates += str(i + 1) + '. ' + filteredCelebrates[i] + smiles[randint(1, len(smiles) - 1)] +'\n' + '\n'
+            output_celebrates.append(filteredCelebrates[i] + smiles[randint(1, len(smiles) - 1)])
         output_celebrates = output_celebrates[:-2]
     else:
         return filteredCelebrates
